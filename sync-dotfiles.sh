@@ -6,6 +6,7 @@ CONFIG_DIR="$REPO_DIR/config"
 SCRIPTS_DIR="$REPO_DIR/bin"
 
 CONFIG_FOLDERS=(
+    "icons" "themes"
     "btop" "cava" "fastfetch" "gtk-3.0" "gtk-4.0"
     "hypr" "kitty" "mpv" "rofi"
     "swaync" "waybar" "xdg-desktop-portal" "xfce4"
@@ -26,6 +27,17 @@ if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
 fi
 
 msg "Copying configurations..."
+if [[ -d "$HOME/.icons" ]]; then
+    mkdir -p "$REPO_DIR/icons"
+    rsync -a --delete "$HOME/.icons/" "$REPO_DIR/icons/"
+    ok "Icons: synced"
+fi
+
+if [[ -d "$HOME/.themes" ]]; then
+    mkdir -p "$REPO_DIR/themes"
+    rsync -a --delete "$HOME/.themes/" "$REPO_DIR/themes/"
+    ok "Themes: synced"
+fi
 for folder in "${CONFIG_FOLDERS[@]}"; do
     if [[ -d "$HOME/.config/$folder" ]]; then
         mkdir -p "$CONFIG_DIR/$folder"
