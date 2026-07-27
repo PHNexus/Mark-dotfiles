@@ -7,7 +7,7 @@ SCRIPTS_DIR="$REPO_DIR/bin"
 
 CONFIG_FOLDERS=(
     "btop" "cava" "fastfetch" "gtk-3.0" "gtk-4.0"
-    "hypr" "kitty" "mpv" "niri" "rofi"
+    "hypr" "kitty" "mpv" "rofi"
     "swaync" "waybar" "xdg-desktop-portal" "xfce4"
 )
 
@@ -41,24 +41,11 @@ for folder in "${CONFIG_FOLDERS[@]}"; do
     fi
 done
 
-if [[ -d "$HOME/.config/hypr" ]]; then
-    mkdir -p "$REPO_DIR/hyprland/config"
-    if [[ -n "$(ls -A "$HOME/.config/hypr" 2>/dev/null)" ]]; then
-        rsync -a --delete "$HOME/.config/hypr/" "$REPO_DIR/hyprland/config/"
-        ok "Config: hyprland"
-    else
-        warn "Hyprland config is empty, copying without --delete"
-        rsync -a "$HOME/.config/hypr/" "$REPO_DIR/hyprland/config/"
-    fi
-else
-    warn "Folder not found: hypr"
-fi
-
 if [[ -d "$HOME/.config/niri" ]]; then
     mkdir -p "$REPO_DIR/niri/config/niri"
     if [[ -n "$(ls -A "$HOME/.config/niri" 2>/dev/null)" ]]; then
         rsync -a --delete "$HOME/.config/niri/" "$REPO_DIR/niri/config/niri/"
-        ok "Config: niri (root)"
+        ok "Config: niri"
     else
         warn "Niri config is empty, copying without --delete"
         rsync -a "$HOME/.config/niri/" "$REPO_DIR/niri/config/niri/"
