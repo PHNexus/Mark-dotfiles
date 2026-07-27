@@ -28,6 +28,8 @@ spawn-at-startup "awww-daemon"
 spawn-at-startup "awww-daemon" "-n" "awww-daemon-backdrop"
 spawn-at-startup "sh" "-c" "$HOME/.local/bin/waybar_manager.sh"
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "awww-daemon"
+spawn-at-startup "awww-daemon" "-n" "awww-daemon-backdrop"
 // Optional
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "gammastep" "-O" "4200K"
