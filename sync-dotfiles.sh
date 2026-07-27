@@ -105,7 +105,12 @@ done
 
 msg "Pushing to GitHub..."
 if git diff --quiet && git diff --cached --quiet; then
-    warn "No changes to commit."
+    if [[ -n "$(git ls-files --others --exclude-standard)" ]]; then
+        git add .
+        git commit -m "Sync: new files - $(date '+%Y-%m-%d %H:%M')"
+    else
+        warn "No changes to commit."
+    fi
 else
     git add .
     git commit -m "Sync: $(date '+%Y-%m-%d %H:%M')" || warn "Empty commit."
