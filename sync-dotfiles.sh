@@ -27,6 +27,11 @@ if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
 fi
 
 msg "Copying configurations..."
+if [[ -d "$HOME/Pictures/Wallpapers" ]]; then
+    mkdir -p "$REPO_DIR/wallpapers"
+    rsync -a --delete "$HOME/Pictures/Wallpapers/" "$REPO_DIR/wallpapers/"
+    ok "Wallpapers: synced"
+fi
 if [[ -d "$HOME/.icons" ]]; then
     mkdir -p "$REPO_DIR/icons"
     rsync -a --delete "$HOME/.icons/" "$REPO_DIR/icons/"
