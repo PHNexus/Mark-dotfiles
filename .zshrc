@@ -70,3 +70,5 @@ SAVEHIST=10000
 setopt HIST_EXPIRE_DUPS_FIRST
 # Anti-corrupção do histórico
 alias sync-dots="~/mark-dotfiles/sync-dotfiles.sh"
+
+export PATH=$PATH:/home/mark/.spicetify
