@@ -190,5 +190,5 @@ output "DP-1" {
     scale 1
     transform "normal"
     position x=1366 y=0       // 1366 é a largura do monitor da esquerda
-
+    focus-at-startup 
 }
