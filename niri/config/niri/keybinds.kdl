@@ -146,4 +146,5 @@ binds {
 
     XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "-e4" "-n2" "set" "2%+"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "-e4" "-n2" "set" "2%-"; } 
+
 }
