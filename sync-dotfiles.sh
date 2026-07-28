@@ -5,8 +5,8 @@ REPO_DIR="$HOME/mark-dotfiles"
 CONFIG_DIR="$REPO_DIR/config"
 SCRIPTS_DIR="$REPO_DIR/bin"
 
+# Removido "icons" e "themes" da lista pois são tratados separadamente
 CONFIG_FOLDERS=(
-    "icons" "themes"
     "btop" "cava" "fastfetch" "gtk-3.0" "gtk-4.0"
     "hypr" "kitty" "mpv" "rofi"
     "swaync" "waybar" "xdg-desktop-portal" "xfce4"
@@ -27,32 +27,29 @@ if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
 fi
 
 msg "Copying configurations..."
+
+# Sincronização de Wallpapers (Apenas 1 vez)
 if [[ -d "$HOME/Pictures/Wallpapers" ]] && [[ -n "$(ls -A "$HOME/Pictures/Wallpapers" 2>/dev/null)" ]]; then
     mkdir -p "$REPO_DIR/wallpapers"
     rsync -a --delete "$HOME/Pictures/Wallpapers/" "$REPO_DIR/wallpapers/"
     ok "Wallpapers: synced"
 fi
-if [[ -d "$HOME/Pictures/Wallpapers" ]] && [[ -n "$(ls -A "$HOME/Pictures/Wallpapers" 2>/dev/null)" ]]; then
-    mkdir -p "$REPO_DIR/wallpapers"
-    rsync -a --delete "$HOME/Pictures/Wallpapers/" "$REPO_DIR/wallpapers/"
-    ok "Wallpapers: synced"
-fi
-if [[ -d "$HOME/Pictures/Wallpapers" ]]; then
-    mkdir -p "$REPO_DIR/wallpapers"
-    rsync -a --delete "$HOME/Pictures/Wallpapers/" "$REPO_DIR/wallpapers/"
-    ok "Wallpapers: synced"
-fi
+
+# Sincronização de Ícones da Home
 if [[ -d "$HOME/.icons" ]]; then
     mkdir -p "$REPO_DIR/icons"
     rsync -a --delete "$HOME/.icons/" "$REPO_DIR/icons/"
     ok "Icons: synced"
 fi
 
+# Sincronização de Temas da Home
 if [[ -d "$HOME/.themes" ]]; then
     mkdir -p "$REPO_DIR/themes"
     rsync -a --delete "$HOME/.themes/" "$REPO_DIR/themes/"
     ok "Themes: synced"
 fi
+
+# Loop pelas pastas de $HOME/.config/
 for folder in "${CONFIG_FOLDERS[@]}"; do
     if [[ -d "$HOME/.config/$folder" ]]; then
         mkdir -p "$CONFIG_DIR/$folder"
@@ -64,10 +61,11 @@ for folder in "${CONFIG_FOLDERS[@]}"; do
             rsync -a "$HOME/.config/$folder/" "$CONFIG_DIR/$folder/"
         fi
     else
-        warn "Folder not found: $folder"
+        warn "Folder not found: folder"
     fi
 done
 
+# Configuração do Niri
 if [[ -d "$HOME/.config/niri" ]]; then
     mkdir -p "$REPO_DIR/niri/config/niri"
     if [[ -n "$(ls -A "$HOME/.config/niri" 2>/dev/null)" ]]; then
@@ -81,6 +79,7 @@ else
     warn "Folder not found: niri"
 fi
 
+# Atualização de Scripts de $HOME/.local/bin/ para o Repositório
 if [[ -d "$SCRIPTS_DIR" ]]; then
     msg "Updating scripts..."
     for script in "$SCRIPTS_DIR"/*; do
@@ -95,6 +94,7 @@ if [[ -d "$SCRIPTS_DIR" ]]; then
     done
 fi
 
+# Arquivos Dotfiles da Home
 msg "Copying home files..."
 for file in .bashrc .zshrc .gitconfig; do
     if [[ -f "$HOME/$file" ]]; then
@@ -103,6 +103,7 @@ for file in .bashrc .zshrc .gitconfig; do
     fi
 done
 
+# Git Sync
 msg "Pushing to GitHub..."
 if git diff --quiet && git diff --cached --quiet; then
     if [[ -n "$(git ls-files --others --exclude-standard)" ]]; then
