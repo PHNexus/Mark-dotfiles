@@ -28,5 +28,5 @@
   <property name="last-renamer-dialog-width" type="int" value="1200"/>
   <property name="last-renamer-dialog-height" type="int" value="1056"/>
   <property name="last-renamer-dialog-maximized" type="bool" value="false"/>
-  <property name="last-show-hidden" type="bool" value="true"/>
+  <property name="last-show-hidden" type="bool" value="false"/>
 </channel>
