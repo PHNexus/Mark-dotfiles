@@ -7,4 +7,3 @@ include "settings.kdl"
 include "environment.kdl"
 include "rules.kdl"
 
-screenshot-path "/home/mark/Pictures/Wallpapers/117497448_p0.jpg"
