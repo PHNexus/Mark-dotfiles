@@ -15,6 +15,7 @@
     <value type="string" value="recent:///"/>
     <value type="string" value="computer:///"/>
     <value type="string" value="file:///home/mark/%C3%81rea%20de%20trabalho"/>
+    <value type="string" value="file:///home/mark/Desktop"/>
   </property>
   <property name="last-separator-position" type="int" value="170"/>
   <property name="last-toolbar-items" type="string" value="menu:0,back:1,forward:1,open-parent:1,open-home:1,new-tab:0,new-window:0,toggle-split-view:0,undo:0,redo:0,zoom-out:0,zoom-in:0,zoom-reset:0,view-as-icons:0,view-as-detailed-list:0,view-as-compact-list:0,view-switcher:0,location-bar:1,reload:0,search:1,uca-action-1785048318478950-1:0"/>
