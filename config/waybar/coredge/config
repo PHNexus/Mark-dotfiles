@@ -4,35 +4,27 @@
     "margin-bottom": 0,
     "margin-left": 0,
     "margin-right": 0,
-    "spacing": 0,
+    "spacing": 2,
     "tooltip": true,
     "reload_style_on_change": true,
 
     "modules-left": [
-        "cava", /* Need to install waybar-cava to use */
-        "mpris"
-    ],
-    "modules-center": [
-        "clock",
-        "custom/menu",
-        "hyprland/workspaces",
-        "niri/workspaces",
-        "mango/workspaces",
-        "custom/recorder",
-        "group/monitor",
-        "group/bar"
+        "custom/logo",
+        "group/gworkspaces"
     ],
     "modules-right": [
-        "backlight",
-        "backlight/slider",
-        "pulseaudio",
-        "pulseaudio/slider",
+        "custom/recorder",
+        "group/monitor",
+        "group/settings",
+        "tray",
+        "clock",
         "custom/notification"
     ],
 
     "clock": {
-        "format": " {:%H:%M} ",
-        "format-alt": " {:%A, %d %B %Y} ",
+        "format": " {:%H:%M, %d %B %Y} ",
+        "format-alt": " {:%A, %H:%M:%S} ",
+        "interval": 1,
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "calendar": {
                     "mode"          : "month",
@@ -56,7 +48,7 @@
                     }
     },
 
-    "group/bar": {
+    "group/gworkspaces": {
         "orientation": "horizontal",
         "drawer": {
             "transition-duration": 1000,
@@ -64,10 +56,9 @@
             "click-to-reveal": true
         },
         "modules": [
-            "custom/bar",
-            "battery",
-            "power-profiles-daemon",
-            "tray"
+            "hyprland/workspaces",
+            "niri/workspaces",
+            "mango/workspaces"
         ]
     },
 
@@ -75,7 +66,7 @@
         "orientation": "horizontal",
         "drawer": {
             "transition-duration": 1000,
-            "transition-left-to-right": true,
+            "transition-left-to-right": false,
             "click-to-reveal": true
         },
         "modules": [
@@ -83,6 +74,24 @@
             "cpu",
             "memory",
             "temperature"
+        ]
+    },
+
+    "group/settings": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 1000,
+            "transition-left-to-right": false,
+            "click-to-reveal": true
+        },
+        "modules": [
+            "custom/settings",
+            "battery",
+            "power-profiles-daemon",
+            "backlight",
+            "backlight/slider",
+            "pulseaudio",
+            "pulseaudio/slider"
         ]
     },
     
@@ -107,10 +116,11 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon}",
+        "format": "{icon} {capacity}%",
         "format-icons": {
             "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-            "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
+            "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+            "plugged": [""]
         },
         "tooltip-format": "Battery: {capacity}%\nPower: {power}W\n{timeTo}",
         "tooltip": true
@@ -188,10 +198,13 @@
     "custom/recorder": {
         "exec": "if [ -f /tmp/recording_time ]; then cat /tmp/recording_time; fi",
         "interval": 1,
-        "format": "󰑋",
-        "tooltip": false,
+        "format": " {text}",
         "return-type": "plain",
-        "if-file-exists": "/tmp/recording_pid"
+        "if-file-exists": "/tmp/recording_pid",
+        "hide-empty-text": true,
+        "on-click": "$HOME/.local/bin/record.sh",
+        "tooltip": true,
+        "tooltip-format": "Stop recording"
     },
 
     "custom/notification": {
@@ -215,23 +228,23 @@
         "escape": true
     },
 
-    "custom/bar": {
-        "format": "󰮯 ",
+    "custom/logo": {
+        "format": "󰮯",
         "tooltip-format": "Have a nice day!",
-        "tooltip": true
+        "tooltip": true,
+        "on-click": "$HOME/.local/bin/hakumenu.sh"
     },
 
     "custom/monitor": {
-        "format": " ",
+        "format": "",
         "tooltip-format": "Click to show monitor stats",
         "tooltip": true
     },
 
-    "custom/menu": {
-        "format": "󰍜 ",
-        "tooltip-format": "Click to show menu",
-        "tooltip": true,
-        "on-click": "$HOME/.local/bin/markmenu.sh"
+    "custom/settings": {
+        "format": "",
+        "tooltip-format": "Click to show settings",
+        "tooltip": true
     },
 
     "cpu": {
@@ -244,7 +257,7 @@
         "format": "{}% "
     },
 
-     "temperature": {
+    "temperature": {
         "interval": 2,
         "format": "{temperatureC}°C "
     },

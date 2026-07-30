@@ -1,44 +1,47 @@
 /* ============================================================================== */
 /* GLOBAL STYLES                                  */
 /* ============================================================================== */
-@import url("../../.local/state/mark_theme/colors.css");
-@import url("../../.local/state/mark_theme/fonts.css");
+@import url("../../.local/state/haku_theme/colors.css");
+@import url("../../.local/state/haku_theme/fonts.css");
 
 * {
-    font-size: 13px; /* original: 14px */
     font-weight: bold;
+    border-radius: 20px;
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: transparent;
     color: @accent_color;
     transition: background-color 0.3s ease;
 }
 
-.modules-left, .modules-center, .modules-right {
-    border-radius: 20px;
-    padding: 6px;
+.modules-center {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 0 0 30px 30px;
+    padding: 2px 20px 6px 20px;
+    margin: 0 0 5px 0;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
 }
+
 
 /* ============================================================================== */
 /* COMMON MODULE STYLES                               */
 /* ============================================================================== */
+#custom-monitor,
 #custom-bar,
-#custom-logo,
+#custom-menu,
 #window,
 #custom-recorder,
-#custom-notification,
 #pulseaudio,
 #backlight,
 #battery,
 #tray,
 #clock,
 #power-profiles-daemon {
-    margin: 4px;
-    padding: 1px;
+    margin: 1px;
+    padding: 0 10px;
     transition: all 1s cubic-bezier(0, 0.5, 0.35, 1);
-    border-radius: 20px;
-    min-height: 30px;
+    min-width: 20px;
 }
 
 /* ============================================================================== */
@@ -46,15 +49,15 @@ window#waybar {
 /* ============================================================================== */
 #workspaces {
     border-radius: 999px;
-    padding: 8px 2px;
-    margin: 4px 0;
+    padding: 2px 8px;
+    margin: 0 4px;
 }
 
 #workspaces button {
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 999px;
-    padding: 0;
-    margin: 4px;
+    padding: 0 10px;
+    margin: 0 3px;
     min-width: 0;
     min-height: 0;
     transition: all 0.8s cubic-bezier(0, 0.5, 0.35, 1);
@@ -62,7 +65,7 @@ window#waybar {
 
 #workspaces button.active {
     background-color: @accent_color;
-    padding: 16px 0;
+    min-width: 30px;
     transition: all 0.8s cubic-bezier(0, 0.5, 0.35, 1);
 }
 
@@ -76,18 +79,15 @@ window#waybar {
 
 #workspaces button.overview {
     background-color: @accent_color;
-    min-height: 30px;
+    min-width: 30px;
     transition: all 0.8s cubic-bezier(0, 0.5, 0.35, 1);
 }
 
 /* ============================================================================== */
 /* SPECIFIC MODULES                                 */
 /* ============================================================================== */
-#window { color: @accent_color; }
-
-#clock { 
-    color: @accent_color;
-    padding: 20px 0;
+#clock {
+    margin: 0 8px 0 8px;
 }
 
 #custom-recorder {
@@ -96,62 +96,73 @@ window#waybar {
     animation: blink 1s infinite; 
 }
 
-#custom-notification {
-    color: @accent_color;
-    padding: 10px 0;
-    margin: 0 4px 8px 0;
+#custom-monitor,
+#custom-bar {
+    border-top: 2px solid @accent_color;
+    border-radius: 0 0 20px 20px;
+    margin: 0 4px 0 4px;
 }
 
-#battery { color: @accent_color; }
-
-#memory { color: @accent_color; }
-
-#cpu { color: @accent_color; }
-
-#custom-logo {
-    min-height: 30px;
-    font-size: 13px; /* original: 20px */
+#custom-bar {
+    margin: 0 10px 0 4px;
 }
 
-#custom-bar,
-#backlight,
-#pulseaudio {
-    color: @accent_color;
-    padding: 10px 0;
-    border-left: 2px solid @accent_color;
-    border-radius: 0 20px 20px 0;
+#cpu,
+#memory,
+#temperature {
+    background-color: rgba(32, 32, 32, 0.6);
+    margin: 1px;
+    padding: 0 12px;
+    transition: all 1s cubic-bezier(0, 0.5, 0.35, 1);
+    min-width: 20px;
+}
+
+#tray {
+    margin: 4px;
 }
 
 /* ============================================================================== */
 /* HOVER EFFECTS                                   */
 /* ============================================================================== */
+#custom-recorder:hover,
+#custom-monitor:hover,
 #custom-bar:hover,
-#custom-logo:hover,
-#clock:hover,
-#power-profiles-daemon:hover,
+#custom-menu:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
 #pulseaudio:hover,
 #backlight:hover,
+#power-profiles-daemon:hover,
 #battery:hover,
 #custom-notification:hover {
     color: #000000;
     background-color: @accent_color;
     transition: all 0.4s cubic-bezier(0, 0.5, 0.35, 1);
-    min-height: 60px;
+    min-width: 100px;
+}
+
+#custom-monitor:hover,
+#custom-bar:hover {
+    border-radius: 20px;
 }
 
 #workspaces button:hover {
     background-color: @accent_color;
     transition: all 0.4s cubic-bezier(0, 0.5, 0.35, 1);
-    min-height: 40px;
+    min-width: 20px;
 }
 
 #workspaces button.active:hover {
     transition: all 0.4s cubic-bezier(0, 0.5, 0.35, 1);
-    min-height: 40px;
+    min-width: 60px;
 }
 
 #clock:hover {
-    min-height: 140px;
+    color: #000000;
+    background-color: @accent_color;
+    transition: all 0.4s cubic-bezier(0, 0.5, 0.35, 1);
+    min-width: 100px;
 }
 
 /* ============================================================================== */
@@ -165,7 +176,6 @@ tooltip {
 
 tooltip label {
     color: @accent_color;
-    font-size: 13px; /* original: 16px */
 }
 
 /* ============================================================================== */
