@@ -235,7 +235,7 @@
         "format": "󰍜 ",
         "tooltip-format": "Click to show menu",
         "tooltip": true,
-        "on-click": "$HOME/.local/bin/hakumenu.sh"
+        "on-click": "$HOME/.local/bin/markmenu.sh"
     },
 
     "cpu": {

@@ -232,7 +232,7 @@
         "format": "󰮯",
         "tooltip-format": "Have a nice day!",
         "tooltip": true,
-        "on-click": "$HOME/.local/bin/hakumenu.sh"
+        "on-click": "$HOME/.local/bin/markmenu.sh"
     },
 
     "custom/monitor": {
