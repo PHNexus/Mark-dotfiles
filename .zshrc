@@ -32,6 +32,12 @@ export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$HOME/.cargo/bin
+export vblank_mode=0
+export __GL_SYNC_TO_VBLANK=0
+# Vulkan / DXVK VSync bypass
+export VK_PRESENT_MODE_IMMEDIATE_KHR=1
+export DXVK_FRAME_RATE=0
+
 # Set alias for common commands
 alias zshconfig="nano ~/.zshrc"
 alias reload="source ~/.zshrc"

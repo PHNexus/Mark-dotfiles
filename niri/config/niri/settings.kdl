@@ -18,7 +18,6 @@ overview {
         color "#000000ee"
     }
 }
-
 cursor {
     xcursor-theme "Bibata-Modern-Ice"
     xcursor-size 24
