@@ -197,7 +197,6 @@
         "tooltip": true,
         "tooltip-format": "Stop recording"
     },
-
     "custom/notification": {
         "tooltip": true,
         "format": "{icon}",

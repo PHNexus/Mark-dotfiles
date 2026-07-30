@@ -131,7 +131,6 @@
         "spacing": 10,
         "show-passive-items": true
     },
-
     "niri/workspaces": {
         "format": "{icon}",
         "format-icons": {
